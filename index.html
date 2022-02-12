@@ -1,0 +1,158 @@
+<html>
+<title>
+Secured DoT and DOH server
+</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="small hobby adblocks DNS resolver with dot doh DOT DOH ">
+<meta name="description" content="DNS, Adblock, dnscrypt, doh, dot, dns-over-https, dns-over-tls, ququruzka, EDNS, no-logs, dnssec, secure DNS">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./icons/w3.css">
+<link rel="stylesheet" href="./icons/black.css">
+<link rel="stylesheet" href="./icons/style.css">
+<link rel="icon" type="image/x-icon" href="./icons/ico.png">
+<link rel="apple-touch-icon-precomposed" href="./icons/ico.png">
+<head>
+<body>
+
+
+<style>
+img.one {
+height: 90%;
+width: auto;
+</style>
+
+<div class="w3-container main-content">
+<h2 class="w3-center" style="text-shadow:1px 1px 0 #444">FAQ</h2>
+<div class="w3-border">
+<div class="w3-bar w3-theme">
+<button class="w3-bar-item w3-button testbtn w3-padding-16" onclick="openCity(event,'TLS / HTTPS ')">Common question</button>
+<button class="w3-bar-item w3-button testbtn w3-padding-16" onclick="openCity(event,'News')">News</button>
+<button class="w3-bar-item w3-button testbtn w3-padding-16" onclick="openCity(event,'troubleshooting')">Troubleshoot</button>
+<button class="w3-bar-item w3-button testbtn w3-padding-16" onclick="window.location.href='/osm/'">OpenStreetMap</button>
+<button class="w3-bar-item w3-button testbtn w3-padding-16" onclick="openCity(event,'donation')">Donation</button>
+
+</div>
+<div id="TLS" class="w3-container city w3-animate-opacity">
+<ul>
+
+<h2>introduction:</h2>
+<span>&#8226;</span>  Traditional DNS queries and replies are sent over UDP or TCP without encryption, making them subject to surveillance, spoofing, and DNS-based Internet filtering. Responses to clients from public resolvers like Google Public DNS are especially vulnerable to this, as messages may pass through many networks, while messages between recursive resolvers and authoritative name servers often incorporate additional protections.<br>
+
+<span>&#8226;</span> To address these issues, in 2016 we launched DNS over HTTPS (now called DoH) offering encrypted DNSSEC-validating DNS resolution over HTTPS and QUIC. And in 2019, we added support for the DNS over TLS (DoT) standard used by the Android Private DNS feature.<br>
+
+<span>&#8226;</span>DoH and DoT enhance privacy and security between clients and resolvers, complementing Google Public DNS validation of DNSSEC to provide end-to-end authenticated DNS for DNSSEC-signed domains. With DOH and DOT, we’re committed to providing fast, private, and secure DNS resolution for both DoH and DoT clients.<br>
+<h2>how to use (Android native client):</h2> <p>
+
+<img src="./icons/1.png" class="one" alt="1"><br>
+<img src="./icons/2.png" class="one" alt="2">
+
+<br>
+Choose <b>Private DNS provider hostname</b> and insert <b>ququruzka.top</b> (no slashes, quotas)
+
+<h2>explanations:</h2> My DoT (DNS-over-TLS) server doesnt catch any of yours requests or responses, just redirects them to cleanbrowsing.org servers.
+<br>Blocking of ads, malicious, adult sites are gurantee.
+<br>If you dont trust to my privacy explanations you can use others DoT servers:
+<br><b>dns.google</b> (just secured connection,<font color="red"> no filters</font>)
+<br><b>1dot1dot1dot1.cloudflare-dns.com</b> ( Cloudflare Inc., <font color="red"> no filters</font>  )
+<br><b>dot-de.blahdns.com</b> (another free public server,  <font color="green"> filters enabled </font>)
+<br>others : dns.adguard.com, dns.adguard.com, dot.xfinity.com
+
+<h2>recommendations:</h2>
+</li>
+<li>Supported TLS v1.2 and v1.3 (the latest and the fastest)</li>
+<li>Why you building this porject? I started this project around 2019. During that time, with my private
+dns, I need an easy way to filter ads and tracker, so I rent a server and learn how to achive this.</li>
+<li>Why you dont like huge traffic? I'm still a student. and I run this service with my pocket money and
+spare time. Just as a hobby to learn somehting new. buying big server or Anti-DDOS service will cost lot.</li>
+</ul>
+</div>
+<div id="News" class="w3-container city w3-animate-opacity">
+<ul>
+<li><a href="https://www.youtube.com/watch?v=eM8MWtNbcfc"> Testing Firefox DoH Without Cloudflare, pfblockerNG, DNS Filtering, and Site Blocking Discussion @ Lawrence Systems / PC Pickup
+</a></li>
+<li><a href="https://techbeasts.com/block-ads-samsung-galaxy-without-third-party-applications-no-root/" target="_blank">Block Ads on Samsung Galaxy without third-party applications [No root required]</a></li>
+<br><li><a href="https://www.reddit.com/r/GalaxyS8/comments/agoxl0/here_is_how_to_block_ads_on_android_pie_without/" target="_blank">Here is how to block Ads on Android Pie without root on the S8. NO APPS NEEDED! New option in Pie.</a></li>
+<br><li><a href="https://www.reddit.com/r/GalaxyS9/comments/a94im7/blocking_ads_without_additional_software_in/" target="_blank">Blocking ads without additional software in Android 9.0 Pie (finally :D)</a></li>
+<br><li><a href="https://www.androidsage.com/2018/12/25/how-to-block-ads-using-private-dns-dns-over-tls-feature/" target="_blank">How to Block Ads using Private DNS (DNS over TLS) Feature on Android 9.0 Pie or later without root https://www.androidsage.com/2018/12/25/how-to-block-ads-using-private-dns-dns-over-tls-feature/</a></li>
+</ul>
+</div>
+
+<div id="troubleshooting" class="w3-container city w3-animate-opacity">
+<p>DNSSEC validation: https://dnssec.vs.uni-due.de</p>
+<p>
+kdig google.com @2001:19f0:7001:1ded:5400:1ff:fe90:945b +tls -p 443
+</p>
+<p>
+kdig google.com @108.61.201.119
+</p>
+# <p>
+#https://gist.github.com/meanevo/e70ca58e361fb4d1a9d262a8f12b173a (HAProxy)
+#https://stuff-things.net/2016/11/30/haproxy-sni/
+#https://pre-prod.chown.me/blog/running-dot-on-openbsd.html
+#https://www.haproxy.com/blog/introduction-to-haproxy-acls/
+#</p>
+</div>
+
+<div id="donation" class="w3-container city w3-animate-opacity">
+<p>
+<ul>
+<li>
+Thanks for mikaela 10 EUR
+</li>
+<li>
+Thanks for Tim 331 TWD*2
+</li>
+<li>
+Thanks for Marco & Felix (9usd, 3usd)
+</li>
+</ul>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<footer class="w3-container w3-theme-dark w3-padding-16 w3-margin-top">
+<div class="myPadding">
+<p>
+<h3>Disclamier</h3>
+<p> Use at your own risk. Under no circumstances will the operator be held responsible or liable in any way for
+any claims, damages, losses, expenses, costs or liabilities whatsoever (including, without limitation, any
+direct or indirect damages for loss of profits, business interruption or loss of information) resulting or
+arising directly or indirectly from accessing or otherwise using this service .<br> The
+operator does not guarantee in any way the access, availability and continuity of the functioning of this
+service. By using this website and service you consent to the disclaimer and agree to its terms and
+conditions. <br>
+By using <a href="https://www.cloudflare.com/">Cloudflare</a> this website stores a cookie, created and
+evaluated by Cloudflare. <br> This cookie is strictly necessary for Cloudflare's security features and cannot
+be turned off. <a href="https://support.cloudflare.com/hc/en-us/articles/200170156-What-does-the-Cloudflare-cfduid-cookie-do-">More
+information.</a>
+</p>
+<p>Copyright 2021 &#169; ququruzka.top </p>
+<p>
+|
+<a href='https://send.monobank.ua/TxmHqPrAc' target='_blank'>
+<img height='36' style='border:0px;height:30px;' src='./icons/mono.png' border='1' alt='Kupi mne kofe :-)' /></a>
+|
+
+
+
+
+<img style="height:36px" src="./icons/btc.png" alt="1CBNTmhNWMcPdz7Aj5jGvxVjgsfz3gkjy9" />BTC address: 1CBNTmhNWMcPdz7Aj5jGvxVjgsfz3gkjy9</a>
+
+
+
+
+
+
+</p>
+<div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+<span class="w3-text w3-theme-light w3-padding">Go To Top</span> 
+<a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+<i class="fa fa-chevron-circle-up"></i></span></a>
+</div>
+</div>
+</footer>
+</body>
+</html>
