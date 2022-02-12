@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+
+  nginx-container:
+    container_name: 'ng1'
+    image: nginx:stable
+    ports:
+      - "80:80"
+      - "443:443"
+#      - "8853:8853"
+#      - "5353:5353"
+#     - "8443:8443"
+      - "127.0.0.1:8053:8053"
+#      - "5353:5353"
+      - "853:853"
+#    networks:
+#      - bridge
+    volumes:
+      - /opt/dot2dot/nginx.conf:/etc/nginx/nginx.conf
+      - /opt/dot2dot/index.html:/usr/share/nginx/html/index.html
+      - /opt/dot2dot:/usr/share/nginx/html
+      - ./osm:/usr/share/nginx/html/osm
+      - /etc/letsencrypt/live/ququruzka.top/fullchain.pem:/etc/certs/fullchain.pem
+      - /etc/letsencrypt/live/ququruzka.top/privkey.pem:/etc/certs/privkey.pem 
+      - /etc/letsencrypt/live/ququruzka.top/chain.pem:/etc/certs/chain.pem
+      - /etc/letsencrypt/dhparamik.pem:/etc/certs/ssl-dhparam.pem
+      - /etc/opt/b/access.log:/etc/nginx/logs/access.log
+      - /opt/dot2dot/nginx_stream.js:/etc/certs/nginx_stream.js
+      - /opt/dot2dot/dns.js:/etc/certs/dns.js
+      - /opt/dot2dot/glb.js:/etc/certs/glb.js
+      - /opt/dot2dot/libdns.js:/etc/certs/libdns.js
+      - /opt/dot2dot/blockips.conf:/etc/nginx/blockips.conf
+      - /opt/dot2dot/mime.types:/etc/nginx/mime.types
+  pihole:
+    container_name: pihole
+    image: pihole/pihole
+    ports:
+      - "5300:53/tcp"
+      - "5300:53/udp"
+      - "88:80/tcp"
+#    networks:
+#      - bridge
+    environment:
+      TZ: 'Europe/Kiev'
+      PIHOLE_DNS_: '208.67.222.123#53;1.0.0.3#53'
+#      PIHOLE_DNS_: '1.0.0.3#53'
+      IPv6: 'false'
+      # WEBPASSWORD: 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - "/opt/etc-pihole/:/etc/pihole/"
+      - "/opt/dnsmasq.d/:/etc/dnsmasq.d/"
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+
+    restart: unless-stopped
+
+#networks:
+#  backbone:
+#    driver: bridge
+#networks:
+#  default:
+    # Use a custom driver
+#    driver: bridge
